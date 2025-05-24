@@ -1,0 +1,8 @@
+opencv-python
+transformers
+scikit-learn
+pandas
+seaborn
+flask
+pillow
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification des Tumeurs Cérébrales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+    <div class="container">
+        <h1>Classification des Tumeurs Cérébrales</h1>
+        <p>Par Amy Collé DIOP</p>
+
+        <div class="content">
+            <div class="description">
+                <h2>Inspiration</h2>
+                <p>Les tumeurs cérébrales sont une cause majeure de morbidité et de mortalité. Identifier précisément les types de tumeurs, comme le gliome, le méningiome, l'absence de tumeur, ou l'adénome hypophysaire, est crucial pour le traitement. </p>
+                <p> Les techniques d'apprentissage automatique permettent d'améliorer la précision et de réduire le temps de diagnostic. </p>
+
+                <h2>Tumeurs Cérébrales</h2>
+                <p>Les tumeurs cérébrales incluent :</p>
+                <ul>
+                    <li><strong>Gliome :</strong> Tumeur maligne provenant des cellules gliales du cerveau.</li>
+                    <li><strong>Méningiome :</strong> Tumeur généralement bénigne des méninges.</li>
+                    <li><strong>Absence de tumeur :</strong> Pas de tumeur détectée dans l'image.</li>
+                    <li><strong>Adénome hypophysaire :</strong> Tumeur bénigne de l'hypophyse.</li>
+                </ul>
+            </div>
+
+            <div class="prediction-form">
+                <h2>Prédiction</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="framework">Framework :</label>
+                        <select name="framework" id="framework" required>
+                            <option value="PyTorch">PyTorch</option>
+                            {% if tensorflow_available %}
+                            <option value="TensorFlow">TensorFlow</option>
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="image" class="upload-label">Choisir une image</label>
+                        <input type="file" name="image" id="image" accept=".jpg,.jpeg,.png">
+                    </div>
+                    <button type="submit" name="action" value="upload">Prédire</button>
+                    <button type="submit" name="action" value="random">Image Aléatoire</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Résultats -->
+        {% if predicted_class %}
+        <div class="result">
+            <h2>Résultat</h2>
+            {% if image_path %}
+            <img src="{{ image_path }}" alt="Image sélectionnée" class="result-image">
+            {% endif %}
+            <p><strong>Prédiction {{ framework }} :</strong> {{ predicted_class }} (Confiance : {{ confidence|round(2) }}%)</p>
+            <h3>Probabilités :</h3>
+            <ul>
+                {% for cls, prob in probabilities.items() %}
+                <li>{{ cls }} : {{ prob|round(2) }}%</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Erreurs -->
+        {% if error %}
+        <div class="error">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

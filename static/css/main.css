@@ -1,0 +1,246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("static/images/backgroundS.jpg");  
+    background-size: cover;        
+    background-position: center;   
+    background-repeat: no-repeat;  
+    height: 100vh;                 
+    margin: 0;                     
+    padding: 0;                    
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #1a5276;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+p {
+    color: #34495e;
+    font-size: 1.1em;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.description, .prediction-form {
+    flex: 1;
+    min-width: 300px;
+}
+
+.description h2 {
+    color: #34495e;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.description p {
+    margin-bottom: 15px;
+}
+
+.description ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.description li {
+    margin: 10px 0;
+    font-size: 1em;
+}
+
+.description li:before {
+    content: "• ";
+    color: #87CEEB;
+}
+
+.prediction-form h2 {
+    color: #34495e;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin: 20px 0;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0f7fa;
+    border-radius: 8px;
+    font-size: 1em;
+    background: #fff;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: #87CEEB;
+    outline: none;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-label {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #87CEEB;
+    color: #fff;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.upload-label:hover {
+    background: #3498db;
+    color: #fff;
+}
+
+button {
+    background: #87CEEB;
+    color: #fff;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin: 10px 5px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #3498db;
+}
+
+button[name="action"][value="random"] {
+    background: #81ecec;
+}
+
+button[name="action"][value="random"]:hover {
+    background: #00cec9;
+}
+
+.result {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 5px solid #87CEEB;
+    text-align: center;
+}
+
+.result-image {
+    width: 256px;
+    height: 256px;
+    margin: 15px auto;
+    border: 5px solid #f8f8f8;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.result h3 {
+    color: #34495e;
+    margin: 15px 0;
+}
+
+.result ul {
+    list-style: none;
+    text-align: left;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.result li {
+    margin: 8px 0;
+    font-size: 1em;
+}
+
+.result li:before {
+    content: "• ";
+    color: #87CEEB;
+}
+
+.error {
+    margin-top: 20px;
+    padding: 15px;
+    background: #ffe6e6;
+    color: #c0392b;
+    border: 2px solid #e74c3c;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #87CEEB;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    select, button {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    .result-image {
+        width: 200px;
+        height: 200px;
+    }
+}
